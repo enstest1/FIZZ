@@ -549,10 +549,10 @@ nav a:hover::after {
 }
 
 .visuals-strip .card img {
-  /* Ensure images fit properly without cropping */
+  /* Ensure images fill the entire card space */
   width: 100%;
   height: 100%;
-  object-fit: contain;
+  object-fit: cover;
   object-position: center;
   /* Maintain image quality */
   image-rendering: -webkit-optimize-contrast;
@@ -594,11 +594,12 @@ nav a:hover::after {
     border-width: 2px;
   }
   
-  .visuals-strip .card img {
-    /* Ensure mobile images are crisp */
-    image-rendering: -webkit-optimize-contrast;
-    image-rendering: pixelated;
-  }
+                .visuals-strip .card img {
+                /* Ensure mobile images fill the entire card space */
+                object-fit: cover;
+                image-rendering: -webkit-optimize-contrast;
+                image-rendering: pixelated;
+              }
 }
 
 
