@@ -540,6 +540,23 @@ nav a:hover::after {
 .visuals-strip .card {
   border: 3px solid rgba(255, 255, 255, 0.1);
   transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  /* Ensure consistent card dimensions */
+  aspect-ratio: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.visuals-strip .card img {
+  /* Ensure images fit properly without cropping */
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+  /* Maintain image quality */
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
 }
 
 .visuals-strip .card:hover {
@@ -569,6 +586,18 @@ nav a:hover::after {
   
   .fizz-burn-section .card {
     border-width: 2px;
+  }
+  
+  /* Mobile-specific visuals-strip adjustments */
+  .visuals-strip .card {
+    aspect-ratio: 4/3; /* Slightly taller on mobile for better viewing */
+    border-width: 2px;
+  }
+  
+  .visuals-strip .card img {
+    /* Ensure mobile images are crisp */
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: pixelated;
   }
 }
 
