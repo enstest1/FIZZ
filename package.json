@@ -1,0 +1,13 @@
+{
+  "name": "fizz-meme-coin",
+  "version": "1.0.0",
+  "description": "FIZZ - Abstract chain meme coin website",
+  "main": "index.html",
+  "scripts": {
+    "build": "echo 'Static site - no build required'",
+    "start": "echo 'Static site - serve index.html'"
+  },
+  "keywords": ["meme-coin", "crypto", "fizz"],
+  "author": "FIZZ Team",
+  "license": "MIT"
+}

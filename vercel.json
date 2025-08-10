@@ -1,0 +1,17 @@
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "fizz-site/**/*",
+      "use": "@vercel/static"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "/fizz-site/$1"
+    }
+  ],
+  "outputDirectory": "fizz-site",
+  "public": true
+}
