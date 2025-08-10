@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>FIZZ • Abstract Toys</title>
+  <!-- SEO: Meta description for search engines and social sharing -->
+  <meta name="description" content="FIZZ — hyper-real matcha can mascot for Abstract. Crack the can, wake the chain." />
+  <!-- Theme color for browser UI consistency -->
+  <meta name="theme-color" content="#0B0E10" />
+  <!-- Tailwind CSS via CDN for rapid development and responsive design -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Custom stylesheet for project-specific styling -->
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body class="bg-[#0B0E10] text-white antialiased">
+
+  <!-- Header Section: Navigation and branding -->
+  <header class="max-w-7xl mx-auto px-6 py-6 flex items-center justify-between">
+    <!-- Brand logo and title -->
+    <div class="flex items-center gap-3">
+      <!-- Star icon container with lime accent -->
+      <div class="w-9 h-9 rounded-xl bg-lime-400/10 flex items-center justify-center">
+        <span class="text-lime-400 text-xl">★</span>
+      </div>
+      <!-- Brand text with hierarchy -->
+      <div class="leading-tight">
+        <p class="text-sm text-white/60">Abstract Toys</p>
+        <h1 class="text-base font-semibold">FIZZ</h1>
+      </div>
+    </div>
+    <!-- Navigation menu (hidden on mobile for responsive design) -->
+    <nav class="hidden md:flex items-center gap-5 text-sm">
+      <a href="#about" class="text-white/80 hover:text-white">About</a>
+      <a href="#faq" class="text-white/80 hover:text-white">FAQ</a>
+      <!-- Primary CTA button for token swapping -->
+      <button id="swapOpen" class="px-4 py-2 rounded-xl bg-lime-400 text-black font-semibold glowbtn">
+        Swap $FIZZ
+      </button>
+    </nav>
+  </header>
+
+  <!-- Swap Modal: Contract input for DexScreener integration -->
+  <div id="swapModal" class="modal">
+    <div class="card rounded-2xl p-6 w-[92%] max-w-[560px]">
+      <!-- Modal header with close button -->
+      <div class="flex items-center justify-between">
+        <h4 class="text-lg font-semibold">Swap to $FIZZ</h4>
+        <button id="swapClose" class="text-white/60 hover:text-white">✕</button>
+      </div>
+      <!-- Instructions for contract input -->
+      <p class="mt-2 text-white/70 text-sm">
+        Paste the contract below. We'll open DexScreener with $FIZZ pre-selected.
+      </p>
+      <!-- Contract address input and action button -->
+      <div class="mt-4 flex gap-2">
+        <input id="ca" class="flex-1 px-3 py-2 rounded-xl bg-white/5 border border-white/10"
+               placeholder="0x… (contract)" />
+        <button id="openDexscreener" class="px-4 py-2 rounded-xl bg-white/10 hover:bg-white/15">
+          Open
+        </button>
+      </div>
+      <!-- Security disclaimer about wallet connections -->
+      <p class="mt-3 text-xs text-white/50">We never auto-connect wallets. Trading happens on the DEX you open.</p>
+    </div>
+  </div>
+
+  <!-- Hero Section: Main value proposition with mascot -->
+  <section class="relative overflow-hidden hero-section">
+    <!-- Animated bubble background for visual appeal -->
+    <div class="bubbles" id="bubbleField"></div>
+    <!-- Two-column layout: headline left, character right -->
+    <div class="max-w-7xl mx-auto px-6 pt-6 pb-20 grid md:grid-cols-2 gap-10 items-center">
+      <!-- Left column: Headline and copy -->
+      <div>
+        <!-- Category label for context -->
+        <p class="uppercase tracking-[.2em] text-xs text-white/50">Abstract Launch</p>
+        <!-- Main headline with neon effect on key phrase -->
+        <h2 class="text-4xl md:text-6xl font-extrabold leading-[1.05] mt-2">
+          <span class="neon text-lime-400">Crack the can</span> · <span class="text-white">Wake the chain.</span>
+        </h2>
+        <!-- Supporting content and description -->
+        <div class="mt-4 max-w-xl">
+          <!-- Status badge showing live state -->
+          <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10">
+            <span class="w-2 h-2 rounded-full bg-lime-400"></span>
+            <span class="text-sm tracking-wide">$FIZZ — Matcha can mascot</span>
+          </span>
+          <!-- Descriptive paragraph with emphasis -->
+          <p class="mt-32 text-white/80">
+            A halo-tabbed troublemaker with a grin wired for breakouts. FIZZ doesn't "launch" —
+            it <em>pops</em>. When the foam rises, timelines wake up.
+          </p>
+                     <!-- HYPE TEXT UNDER CRACK THE CAN -->
+           <div class="mt-8 p-3 bg-lime-400/10 border-2 border-lime-400/30 rounded-xl hype-box">
+             <p class="text-lime-300 font-semibold text-lg text-center">
+               <strong>THE CAN IS CRACKED</strong>
+             </p>
+             <div class="mt-3 text-center">
+               <p class="text-lime-400 font-bold text-xl">$FIZZ BURN</p>
+               <p class="text-lime-300 text-sm mt-1">The collection awaits. The universe expands. Are you ready to pop?</p>
+             </div>
+           </div>
+        </div>
+        <!-- Call-to-action buttons -->
+        <div class="mt-6 flex flex-wrap gap-3">
+          <a href="#about" class="px-5 py-3 rounded-xl bg-lime-400 text-black font-semibold hover:opacity-90">
+            Read the Story
+          </a>
+          <a href="#faq" class="px-5 py-3 rounded-xl bg-white/10 font-semibold hover:bg-white/15">
+            FAQ
+          </a>
+        </div>
+      </div>
+
+      <!-- Right column: Character card with mascot image -->
+      <div class="relative">
+        <!-- Background glow effect for visual depth -->
+        <div class="absolute -inset-8 bg-lime-400/5 rounded-3xl blur-3xl"></div>
+        <!-- Main character container -->
+        <div class="relative card rounded-2xl p-6">
+                     <!-- Mascot image - replace with actual PNG at /assets/fizz-hero.png -->
+           <img src="assets/fizz-hero.png" alt="$FIZZ mascot" class="w-full h-auto rounded-xl" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+
+  <!-- Story of FIZZ Section: Project background and story -->
+  <section id="about" class="max-w-7xl mx-auto px-6 py-12">
+    <h3 class="text-3xl font-bold neon">Story of FIZZ</h3>
+    <!-- Content with semantic structure and emphasis -->
+    <div class="mt-3 text-white/80 max-w-3xl space-y-4">
+      <!-- Genesis story -->
+      <p><strong>Genesis.</strong> One can left in the Abstract fridge — sealed, over-carbonated, rumored to pump charts on contact.
+         Someone cracked it during a dead market. The hiss echoed through the chain. Candles foamed green. A mascot woke up. The can's contents weren't just fizzy — they were the essence of something bigger. Every bubble held a promise, every pop released potential. When the seal broke, it wasn't just a drink that escaped. It was the beginning of a collection, a universe waiting to be unlocked.</p>
+    </div>
+  </section>
+
+  <!-- Visuals Strip: Optional image showcase section -->
+  <section class="max-w-7xl mx-auto px-6 pb-8 visuals-strip">
+    <!-- Three-column grid for visual assets -->
+    <div class="grid md:grid-cols-3 gap-6">
+      <!-- Close-up detail shot -->
+      <div class="card rounded-2xl overflow-hidden">
+        <img src="assets/fizz-closeup.png" alt="FIZZ close-up" class="w-full h-auto" />
+        <div class="p-4 text-white/70 text-sm">Close-up — cheeky grin, condensation beads, chrome lip.</div>
+      </div>
+      <!-- Action/dynamic shot -->
+      <div class="card rounded-2xl overflow-hidden">
+        <img src="assets/fizz-action.png" alt="FIZZ action" class="w-full h-auto" />
+        <div class="p-4 text-white/70 text-sm">Foam burst — motion + energy.</div>
+      </div>
+      <!-- Macro detail shot -->
+      <div class="card rounded-2xl overflow-hidden">
+        <img src="assets/fizz-carbonation.png" alt="Carbonation macro" class="w-full h-auto" />
+        <div class="p-4 text-white/70 text-sm">Macro bubbles — neon rim light.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FIZZ BURN Section: Collection and burning mechanics -->
+  <section class="max-w-7xl mx-auto px-6 py-16 fizz-burn-section">
+             <div class="text-center mb-12">
+           <h3 class="text-4xl font-bold neon mb-6">$FIZZ BURN</h3>
+           <p class="text-xl text-white/80 max-w-4xl mx-auto">
+             The collection awaits. The universe expands. Are you ready to pop?
+           </p>
+         </div>
+    
+    
+  </section>
+
+  
+
+  <!-- FAQ Section: Common questions and answers -->
+  <section id="faq" class="max-w-7xl mx-auto px-6 pb-16">
+    <h3 class="text-3xl font-bold mt-8">FAQ</h3>
+    <!-- Two-column grid for FAQ items -->
+    <div class="mt-6 grid md:grid-cols-2 gap-6">
+      <!-- FAQ Item 1: What is FIZZ -->
+      <div class="card rounded-2xl p-6 border-2 border-white/20 hover:border-white/40 transition-all duration-300 hover:bg-white/5">
+        <h4 class="font-semibold text-white">What is FIZZ?</h4>
+        <p class="mt-2 text-white/70 text-sm">A character IP born on Abstract — part mascot, part collectible, part ongoing story. Built to live online first, everywhere later.</p>
+      </div>
+      <!-- FAQ Item 3: Why Abstract -->
+      <div class="card rounded-2xl p-6 border-2 border-white/20 hover:border-white/40 transition-all duration-300 hover:bg-white/5">
+        <h4 class="font-semibold text-white">Why Abstract?</h4>
+        <p class="mt-2 text-white/70 text-sm">Consumer-grade UX, gas-abstracted flows, and a culture that loves character IP. Perfect ground for a fizzy brand.</p>
+      </div>
+      <!-- FAQ Item 4: Financial disclaimer -->
+      <div class="card rounded-2xl p-6 border-2 border-white/20 hover:border-white/40 transition-all duration-300 hover:bg-white/5">
+        <h4 class="font-semibold text-white">Financial advice?</h4>
+        <p class="mt-2 text-white/70 text-sm">No. FIZZ is a community character and art project. Nothing here is investment advice. Please DYOR.</p>
+      </div>
+    </div>
+  </section>
+
+
+
+  <!-- Footer: Copyright and external links -->
+  <footer class="border-t border-white/10">
+    <div class="max-w-7xl mx-auto px-6 py-10 text-sm text-white/60 flex flex-col md:flex-row gap-4 md:gap-8 items-center justify-between">
+      <!-- Copyright with dynamic year -->
+      <p>© <span id="y"></span> FIZZ • Made for Abstract</p>
+      <!-- External links and resources -->
+      <div class="flex gap-4">
+        <a class="hover:text-white" href="#" target="_blank" rel="noreferrer">Twitter</a>
+        <a class="hover:text-white" href="#" target="_blank" rel="noreferrer">Docs</a>
+        <!-- Contract link (populated by JavaScript) -->
+        <a id="contractLink" class="hover:text-white" href="#" target="_blank" rel="noreferrer">Contract</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Configuration file for easy customization -->
+  <script src="config.js"></script>
+  <!-- JavaScript for interactivity and animations -->
+  <script src="js/main.js"></script>
+</body>
+</html>

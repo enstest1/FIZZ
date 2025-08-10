@@ -1,0 +1,575 @@
+/* ==========================================================================
+   FIZZ Meme Coin Website - Custom Styles
+   ========================================================================== */
+
+/* CSS Custom Properties (Variables) for consistent theming */
+:root { 
+  --lime: #B7FF00;      /* Primary brand color - vibrant lime green */
+  --ink: #0B0E10;       /* Deep background color - almost black */
+  --white-60: rgba(255,255,255,0.6);    /* Secondary text opacity */
+  --white-80: rgba(255,255,255,0.8);    /* Primary text opacity */
+  --white-10: rgba(255,255,255,0.1);    /* Subtle border opacity */
+  --white-15: rgba(255,255,255,0.15);   /* Hover state opacity */
+}
+
+/* ==========================================================================
+   Typography & Text Effects
+   ========================================================================== */
+
+/* Enhanced neon text effect for key phrases - creates more pop and sleek appearance */
+.neon {
+  text-shadow: 
+    0 0 5px currentColor,
+    0 0 10px currentColor,
+    0 0 15px currentColor;
+  animation: neonGlow 2s ease-in-out infinite alternate;
+}
+
+@keyframes neonGlow {
+  from { 
+    text-shadow: 
+      0 0 5px currentColor,
+      0 0 10px currentColor,
+      0 0 15px currentColor; 
+  }
+  to { 
+    text-shadow: 
+      0 0 8px currentColor,
+      0 0 15px currentColor,
+      0 0 20px currentColor; 
+  }
+}
+
+/* ==========================================================================
+   Enhanced Header Styling
+   ========================================================================== */
+
+/* ==========================================================================
+   Enhanced Hero Section
+   ========================================================================== */
+
+.hero-section {
+  position: relative;
+  background: radial-gradient(circle at 30% 20%, rgba(183, 255, 0, 0.05) 0%, transparent 50%),
+              radial-gradient(circle at 70% 80%, rgba(0, 255, 217, 0.05) 0%, transparent 50%);
+}
+
+
+
+header {
+  background: rgba(11, 14, 16, 0.95);
+  backdrop-filter: blur(20px);
+  border-bottom: 3px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* ==========================================================================
+   Component Styling
+   ========================================================================== */
+
+/* Card component - enhanced styling for more pop and sleek appearance */
+.card {
+  background: rgba(255, 255, 255, 0.04);
+  border: 3px solid rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(20px);
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Enhanced card hover effects */
+.card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+  transition: left 0.6s ease;
+}
+
+.card:hover::before {
+  left: 100%;
+}
+
+.card:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.25);
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 
+    0 20px 60px rgba(0, 0, 0, 0.4),
+    0 0 40px rgba(183, 255, 0, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.15);
+}
+
+/* Glow button effect - enhances primary CTA buttons */
+.glowbtn { 
+  box-shadow: 
+    0 0 0 2px rgba(183,255,0,.15),        /* Outer glow ring */
+    0 0 36px rgba(183,255,0,.25) inset;   /* Inner glow fill */
+  transition: all 0.3s ease;               /* Smooth transition for interactions */
+}
+
+/* Hover state for glow buttons */
+.glowbtn:hover {
+  box-shadow: 
+    0 0 0 3px rgba(183,255,0,.25),        /* Enhanced outer glow */
+    0 0 48px rgba(183,255,0,.35) inset;   /* Enhanced inner glow */
+  transform: translateY(-3px);             /* Enhanced lift effect */
+  background: linear-gradient(135deg, #C8FF1A, #B7FF00);
+}
+
+/* ==========================================================================
+   Bubble Animation System
+   ========================================================================== */
+
+/* Container for animated bubble background */
+.bubbles { 
+  position: absolute;           /* Positioned absolutely within hero section */
+  inset: -10% -10% 0 -10%;     /* Extends beyond visible area for overflow */
+  pointer-events: none;         /* Prevents interference with user interactions */
+  overflow: hidden;             /* Clips bubbles to container bounds */
+  z-index: 1;                  /* Places behind main content */
+}
+
+/* Individual bubble styling and animation */
+.bubble { 
+  position: absolute;           /* Absolute positioning for independent movement */
+  bottom: -10%;                /* Starts below visible area */
+  border-radius: 9999px;       /* Perfect circle shape */
+  animation: rise linear infinite;  /* Continuous upward movement */
+  opacity: 0;                  /* Starts invisible for fade-in effect */
+}
+
+/* Keyframe animation for bubble rising effect */
+@keyframes rise {
+  0% { 
+    transform: translateY(0) scale(.6);    /* Start position and size */
+    opacity: 0;                           /* Begin invisible */
+  }
+  10% { 
+    opacity: .65;                          /* Fade in quickly */
+  }
+  100% { 
+    transform: translateY(-120vh) scale(1.2);  /* Move up and grow */
+    opacity: 0;                             /* Fade out at end */
+  }
+}
+
+/* ==========================================================================
+   Modal System
+   ========================================================================== */
+
+/* Modal overlay - full screen backdrop */
+.modal { 
+  position: fixed;              /* Fixed positioning for overlay */
+  inset: 0;                    /* Covers entire viewport */
+  backdrop-filter: blur(6px);  /* Blur effect on background */
+  background: rgba(0,0,0,.55); /* Semi-transparent dark overlay */
+  display: none;               /* Hidden by default */
+  align-items: center;         /* Vertical centering */
+  justify-content: center;     /* Horizontal centering */
+  z-index: 50;                /* High z-index for overlay */
+  opacity: 0;                 /* Start invisible for fade effect */
+  transition: opacity 0.3s ease; /* Smooth fade transition */
+}
+
+/* Modal open state */
+.modal.open { 
+  display: flex;               /* Show modal when open class is applied */
+  opacity: 1;                  /* Fully visible */
+}
+
+/* Modal content container */
+.modal .card {
+  transform: scale(0.9);       /* Start slightly smaller */
+  transition: transform 0.3s ease; /* Smooth scale transition */
+}
+
+/* Modal open animation */
+.modal.open .card {
+  transform: scale(1);         /* Full size when open */
+}
+
+/* ==========================================================================
+   Responsive Design Enhancements
+   ========================================================================== */
+
+/* Mobile-first responsive adjustments */
+@media (max-width: 768px) {
+  /* Reduce bubble density on smaller screens */
+  .bubbles {
+    inset: -5% -5% 0 -5%;     /* Smaller overflow area */
+  }
+  
+  /* Adjust modal sizing for mobile */
+  .modal .card {
+    width: 95% !important;     /* Wider on mobile */
+    max-width: none !important; /* Remove max-width constraint */
+    margin: 1rem;              /* Add margin for breathing room */
+  }
+}
+
+/* ==========================================================================
+   Accessibility & Performance
+   ========================================================================== */
+
+/* Smooth scrolling for anchor links */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Reduce motion for users who prefer it */
+@media (prefers-reduced-motion: reduce) {
+  .bubble {
+    animation: none;           /* Disable bubble animations */
+  }
+  
+  .modal,
+  .modal .card {
+    transition: none;          /* Disable modal transitions */
+  }
+  
+  .glowbtn {
+    transition: none;          /* Disable button transitions */
+  }
+}
+
+/* Focus states for keyboard navigation */
+button:focus,
+input:focus,
+a:focus {
+  outline: 2px solid var(--lime);  /* Lime outline for focus */
+  outline-offset: 2px;             /* Offset for better visibility */
+}
+
+/* ==========================================================================
+   Print Styles
+   ========================================================================== */
+
+@media print {
+  /* Hide interactive elements when printing */
+  .modal,
+  .bubbles,
+  button,
+  .glowbtn {
+    display: none !important;
+  }
+  
+  /* Ensure good contrast for printing */
+  .card {
+    border: 1px solid #000;
+    background: #fff !important;
+    color: #000 !important;
+  }
+}
+
+/* ==========================================================================
+   Enhanced FAQ Section Styling
+   ========================================================================== */
+
+/* FAQ section header with enhanced neon effect */
+#faq h3 {
+  text-shadow: 
+    0 0 20px rgba(183,255,0,.6),
+    0 0 40px rgba(183,255,0,.4),
+    0 0 60px rgba(183,255,0,.2);
+  animation: neonPulse 2s ease-in-out infinite alternate;
+}
+
+/* Neon pulse animation for FAQ header */
+@keyframes neonPulse {
+  from {
+    text-shadow: 
+      0 0 20px rgba(183,255,0,.6),
+      0 0 40px rgba(183,255,0,.4),
+      0 0 60px rgba(183,255,0,.2);
+  }
+  to {
+    text-shadow: 
+      0 0 25px rgba(183,255,0,.8),
+      0 0 50px rgba(183,255,0,.6),
+      0 0 75px rgba(183,255,0,.4);
+  }
+}
+
+/* Enhanced FAQ card hover effects */
+#faq .card {
+  border: 3px solid rgba(255, 255, 255, 0.15);
+  background: rgba(255, 255, 255, 0.03);
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  position: relative;
+  overflow: hidden;
+}
+
+#faq .card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(183,255,0,.1), transparent);
+  transition: left 0.5s ease;
+}
+
+#faq .card:hover::before {
+  left: 100%;
+}
+
+#faq .card:hover {
+  border-color: rgba(255, 255, 255, 0.3);
+  background: rgba(255, 255, 255, 0.06);
+  transform: translateY(-6px) scale(1.02);
+  box-shadow: 
+    0 20px 60px rgba(0,0,0,.4),
+    0 0 40px rgba(183,255,0,.2);
+}
+
+/* Enhanced FAQ styling for remaining cards */
+#faq .card {
+  border: 3px solid rgba(255, 255, 255, 0.15);
+  background: rgba(255, 255, 255, 0.03);
+}
+
+/* ============================================================================
+   Enhanced HYPE BOX Styling
+   ============================================================================ */
+
+.hype-box {
+  background: linear-gradient(135deg, rgba(183, 255, 0, 0.06), rgba(0, 255, 217, 0.03));
+  border: 3px solid rgba(183, 255, 0, 0.3);
+  box-shadow: 
+    0 4px 20px rgba(183, 255, 0, 0.1),
+    inset 0 1px 0 rgba(183, 255, 0, 0.15);
+  position: relative;
+  overflow: hidden;
+}
+
+.hype-box::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(45deg, transparent 30%, rgba(183, 255, 0, 0.1) 50%, transparent 70%);
+  animation: shimmer 3s ease-in-out infinite;
+}
+
+@keyframes shimmer {
+  0%, 100% { transform: translateX(-100%); }
+  50% { transform: translateX(100%); }
+}
+
+/* ============================================================================
+   FIZZ BURN Section Styling
+   ============================================================================ */
+
+.fizz-burn-section {
+  background: linear-gradient(135deg, rgba(183, 255, 0, 0.03) 0%, rgba(0, 255, 217, 0.03) 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.fizz-burn-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle at 50% 50%, rgba(183, 255, 0, 0.05) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.fizz-burn-section .card {
+  background: rgba(255, 255, 255, 0.05);
+  border: 2px solid rgba(183, 255, 0, 0.2);
+  backdrop-filter: blur(20px);
+  transition: all 0.3s ease;
+}
+
+.fizz-burn-section .card:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(183, 255, 0, 0.4);
+  transform: translateY(-5px);
+  box-shadow: 0 20px 40px rgba(183, 255, 0, 0.1);
+}
+
+.fizz-burn-section .card div[class*="text-4xl"] {
+  transition: transform 0.3s ease;
+}
+
+.fizz-burn-section .card:hover div[class*="text-4xl"] {
+  transform: scale(1.1);
+}
+
+/* ============================================================================
+   Abstract Toys Section Styling
+   ============================================================================ */
+
+.abstract-toys-section {
+  background: linear-gradient(135deg, rgba(183, 255, 0, 0.03) 0%, rgba(0, 255, 217, 0.03) 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.abstract-toys-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle at 30% 20%, rgba(183, 255, 0, 0.05) 0%, transparent 50%),
+              radial-gradient(circle at 70% 80%, rgba(0, 255, 217, 0.05) 0%, transparent 50%);
+  pointer-events: none;
+}
+
+.abstract-toys-section .card {
+  background: rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(20px);
+  border: 3px solid rgba(183, 255, 0, 0.15);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.abstract-toys-section .card:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(183, 255, 0, 0.4);
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 
+    0 25px 80px rgba(0, 0, 0, 0.5),
+    0 0 60px rgba(183, 255, 0, 0.2),
+    inset 0 1px 0 rgba(183, 255, 0, 0.3);
+}
+
+.abstract-toys-section .card div[class*="text-4xl"] {
+  transition: all 0.3s ease;
+}
+
+.abstract-toys-section .card:hover div[class*="text-4xl"] {
+  transform: scale(1.1) rotate(5deg);
+  filter: drop-shadow(0 0 20px rgba(183, 255, 0, 0.5));
+}
+
+.abstract-toys-section h3.neon {
+  background: linear-gradient(45deg, #B7FF00, #00FFD9);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-shadow: 0 0 30px rgba(183, 255, 0, 0.5);
+}
+
+/* ============================================================================
+   Enhanced FAQ Styling
+   ============================================================================ */
+
+
+
+/* ============================================================================
+   Enhanced Footer Styling
+   ============================================================================ */
+
+footer {
+  border-top: 3px solid rgba(255, 255, 255, 0.1);
+  background: rgba(11, 14, 16, 0.95);
+  backdrop-filter: blur(20px);
+}
+
+/* ============================================================================
+   Enhanced Modal Styling
+   ============================================================================ */
+
+.modal .card {
+  border: 3px solid rgba(183, 255, 0, 0.2);
+  background: rgba(11, 14, 16, 0.95);
+  backdrop-filter: blur(30px);
+  box-shadow: 
+    0 25px 80px rgba(0, 0, 0, 0.6),
+    0 0 60px rgba(183, 255, 0, 0.1);
+}
+
+/* ============================================================================
+   Enhanced Input & Button Styling
+   ============================================================================ */
+
+input, button {
+  border: 2px solid rgba(255, 255, 255, 0.15);
+  transition: all 0.3s ease;
+}
+
+input:focus, button:focus {
+  border-color: rgba(183, 255, 0, 0.5);
+  box-shadow: 0 0 20px rgba(183, 255, 0, 0.2);
+  outline: none;
+}
+
+/* ============================================================================
+   Enhanced Navigation Links
+   ============================================================================ */
+
+nav a {
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+nav a::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg, #B7FF00, #00FFD9);
+  transition: width 0.3s ease;
+}
+
+nav a:hover::after {
+  width: 100%;
+}
+
+/* ============================================================================
+   Enhanced Visuals Strip
+   ============================================================================ */
+
+.visuals-strip .card {
+  border: 3px solid rgba(255, 255, 255, 0.1);
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.visuals-strip .card:hover {
+  border-color: rgba(183, 255, 0, 0.4);
+  transform: translateY(-12px) scale(1.03);
+  box-shadow: 
+    0 25px 80px rgba(0, 0, 0, 0.5),
+    0 0 50px rgba(183, 255, 0, 0.15);
+}
+
+/* ============================================================================
+   Responsive Enhancements
+   ============================================================================ */
+
+@media (max-width: 768px) {
+  .card {
+    border-width: 2px;
+  }
+  
+  .hype-box {
+    border-width: 2px;
+  }
+  
+  .abstract-toys-section .card {
+    border-width: 2px;
+  }
+  
+  .fizz-burn-section .card {
+    border-width: 2px;
+  }
+}
+
+
