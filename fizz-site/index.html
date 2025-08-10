@@ -76,36 +76,18 @@
       <a href="#about" class="text-white/80 hover:text-white">About</a>
       <a href="#faq" class="text-white/80 hover:text-white">FAQ</a>
       <!-- Primary CTA button for token swapping -->
-      <button id="swapOpen" class="px-4 py-2 rounded-xl bg-lime-400 text-black font-semibold glowbtn">
+      <a 
+        href="https://dexscreener.com/abstract/0x666113ff9347dacca03ad0dac384e0fe9c56cdb5" 
+        target="_blank" 
+        rel="noopener noreferrer"
+        class="px-4 py-2 rounded-xl bg-lime-400 text-black font-semibold glowbtn hover:opacity-90 transition-opacity"
+      >
         Swap $FIZZ
-      </button>
+      </a>
     </nav>
   </header>
 
-  <!-- Swap Modal: Contract input for DexScreener integration -->
-  <div id="swapModal" class="modal">
-    <div class="card rounded-2xl p-6 w-[92%] max-w-[560px]">
-      <!-- Modal header with close button -->
-      <div class="flex items-center justify-between">
-        <h4 class="text-lg font-semibold">Swap to $FIZZ</h4>
-        <button id="swapClose" class="text-white/60 hover:text-white">✕</button>
-      </div>
-      <!-- Instructions for contract input -->
-      <p class="mt-2 text-white/70 text-sm">
-        Paste the contract below. We'll open DexScreener with $FIZZ pre-selected.
-      </p>
-      <!-- Contract address input and action button -->
-      <div class="mt-4 flex gap-2">
-        <input id="ca" class="flex-1 px-3 py-2 rounded-xl bg-white/5 border border-white/10"
-               placeholder="0x… (contract)" />
-        <button id="openDexscreener" class="px-4 py-2 rounded-xl bg-white/10 hover:bg-white/15">
-          Open
-        </button>
-      </div>
-      <!-- Security disclaimer about wallet connections -->
-      <p class="mt-3 text-xs text-white/50">We never auto-connect wallets. Trading happens on the DEX you open.</p>
-    </div>
-  </div>
+
 
   <!-- Hero Section: Main value proposition with mascot -->
   <section class="relative overflow-hidden hero-section">

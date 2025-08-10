@@ -4,8 +4,7 @@
  * This file handles all interactive functionality including:
  * - Dynamic footer year updates
  * - Animated bubble background system
- * - Swap modal functionality
- * - DexScreener integration
+ * - Direct DexScreener integration
  * - Contract link population
  * 
  * @author FIZZ Team
@@ -21,13 +20,6 @@ const yearElement = document.getElementById('y');
 
 // Bubble animation system elements
 const bubbleField = document.getElementById('bubbleField');
-
-// Modal system elements
-const swapModal = document.getElementById('swapModal');
-const swapOpenBtn = document.getElementById('swapOpen');
-const swapCloseBtn = document.getElementById('swapClose');
-const contractInput = document.getElementById('ca');
-const dexscreenerBtn = document.getElementById('openDexscreener');
 
 // Contract link element
 const contractLink = document.getElementById('contractLink');
@@ -53,15 +45,7 @@ function log(level, message, data = null) {
   }
 }
 
-/**
- * Validates Ethereum contract address format
- * @param {string} address - Contract address to validate
- * @returns {boolean} - True if valid format
- */
-function isValidContractAddress(address) {
-  const contractRegex = /^0x[a-fA-F0-9]{40}$/;
-  return contractRegex.test(address);
-}
+
 
 // ============================================================================
 // Footer Year Update
@@ -185,81 +169,7 @@ function initializeBubbleSystem() {
   }
 }
 
-// ============================================================================
-// Modal System
-// ============================================================================
 
-/**
- * Opens the swap modal
- */
-function openSwapModal() {
-  try {
-    if (swapModal) {
-      swapModal.classList.add('open');
-      
-      // Focus on contract input for better UX
-      if (contractInput) {
-        setTimeout(() => contractInput.focus(), 100);
-      }
-      
-      log('info', 'Swap modal opened');
-    } else {
-      log('warn', 'Swap modal element not found');
-    }
-  } catch (error) {
-    log('error', 'Failed to open swap modal', error);
-  }
-}
-
-/**
- * Closes the swap modal
- */
-function closeSwapModal() {
-  try {
-    if (swapModal) {
-      swapModal.classList.remove('open');
-      log('info', 'Swap modal closed');
-    } else {
-      log('warn', 'Swap modal element not found');
-    }
-  } catch (error) {
-    log('error', 'Failed to close swap modal', error);
-  }
-}
-
-/**
- * Handles opening DexScreener with contract address
- */
-function openDexScreener() {
-  try {
-    const contractAddress = (contractInput?.value || '').trim();
-    
-    // Validate contract address format
-    if (!isValidContractAddress(contractAddress)) {
-      alert('Please paste a valid contract address first.');
-      log('warn', 'Invalid contract address provided', { address: contractAddress });
-      return;
-    }
-    
-    // Construct DexScreener URL with contract pre-selected
-    const dexscreenerUrl = `https://dexscreener.com/abstract?trade=true&outputCurrency=${contractAddress}`;
-    
-    // Open in new tab
-    window.open(dexscreenerUrl, '_blank', 'noopener,noreferrer');
-    
-    log('info', 'DexScreener opened', { 
-      contract: contractAddress, 
-      url: dexscreenerUrl 
-    });
-    
-    // Close modal after successful action
-    closeSwapModal();
-    
-  } catch (error) {
-    log('error', 'Failed to open DexScreener', error);
-    alert('Failed to open DexScreener. Please try again.');
-  }
-}
 
 // ============================================================================
 // Contract Link Population
@@ -304,44 +214,9 @@ function populateContractLink() {
  */
 function setupEventListeners() {
   try {
-    // Modal open/close events
-    if (swapOpenBtn) {
-      swapOpenBtn.addEventListener('click', openSwapModal);
-      log('debug', 'Swap open button event listener added');
-    }
+    // No modal event listeners needed - direct link to DexScreener
     
-    if (swapCloseBtn) {
-      swapCloseBtn.addEventListener('click', closeSwapModal);
-      log('debug', 'Swap close button event listener added');
-    }
-    
-    // Modal backdrop click to close
-    if (swapModal) {
-      swapModal.addEventListener('click', (event) => {
-        if (event.target === swapModal) {
-          closeSwapModal();
-        }
-      });
-      log('debug', 'Modal backdrop click listener added');
-    }
-    
-    // DexScreener button
-    if (dexscreenerBtn) {
-      dexscreenerBtn.addEventListener('click', openDexScreener);
-      log('debug', 'DexScreener button event listener added');
-    }
-    
-    // Contract input enter key support
-    if (contractInput) {
-      contractInput.addEventListener('keypress', (event) => {
-        if (event.key === 'Enter') {
-          openDexScreener();
-        }
-      });
-      log('debug', 'Contract input enter key listener added');
-    }
-    
-    log('info', 'All event listeners configured successfully');
+    log('info', 'Event listeners configured successfully');
   } catch (error) {
     log('error', 'Failed to setup event listeners', error);
   }
